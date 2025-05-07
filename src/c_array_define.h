@@ -5,7 +5,10 @@
  *
  * Version: 2.2
  * Created by Duncan (CoffeeCatRailway) on 01/04/2025.
- * https://gist.github.com/CoffeeCatRailway/c55f8f56aaf40e2ecd5c3c6994370289
+ * Original: https://gist.github.com/CoffeeCatRailway/c55f8f56aaf40e2ecd5c3c6994370289
+ *
+ * MIT License (MIT), http://opensource.org/licenses/MIT
+ * Full license can be found in the LICENSE file
  *
  * TODO:
  *  - Push front (currently only have push back)
@@ -142,7 +145,7 @@
 		} \
 	}
 
-ARRAY_H_DEFINE_ARRAY(int) // array_int_t
+// ARRAY_H_DEFINE_ARRAY(int) // array_int_t
 // ARRAY_H_DEFINE_ARRAY(float) // array_float_t
 // ARRAY_H_DEFINE_ARRAY(double) // array_double_t
 // ARRAY_H_DEFINE_ARRAY(long) // array_long_t

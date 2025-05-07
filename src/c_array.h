@@ -1,8 +1,8 @@
 /*
  * Created by Duncan on 03/05/2025.
  *
- * Based on https://github.com/eignnx/dynarray
- * Disclaimer: Eignnx project did not have a license at the time I made this
+ * MIT License (MIT), http://opensource.org/licenses/MIT
+ * Full license can be found in the LICENSE file
  */
 
 #ifndef ARRAY_NEW_H
@@ -46,6 +46,11 @@ void arrayPopAt(void* array, size_t index, void* dest);
 
 #define arrayCreate(type) _arrayCreate(2, 2, sizeof(type))
 #define arrayCreatePrealloc(type, capacity, increment) _arrayCreate(capacity, increment, sizeof(type))
+
+#define arrayGetLength(array) _arrayFieldGet(array, LENGTH)
+#define arrayGetCapacity(array) _arrayFieldGet(array, CAPACITY)
+#define arrayGetIncrement(array) _arrayFieldGet(array, INCREMENT)
+#define arrayGetStride(array) _arrayFieldGet(array, STRIDE)
 
 #define arrayCapacityIncrement(array) array = _arrayResize(array, _arrayFieldGet(array, CAPACITY) + _arrayFieldGet(array, INCREMENT))
 #define arrayCapacityDeflate(array) \
