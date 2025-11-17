@@ -129,7 +129,7 @@ void* _arrayPushAt(void* array, const size_t index, const void* element)
 // 	_arrayFieldSet(array, LENGTH, length - 1);
 // }
 
-void arrayPopAt(void* array, const size_t index, void* dest)
+void _arrayPopAt(void* array, const size_t index, void* dest)
 {
 	const size_t length = arrayGetLength(array);
 	const size_t stride = arrayGetStride(array);

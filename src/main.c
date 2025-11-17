@@ -38,8 +38,8 @@ int main()
 	// testArrayNewAvg(times, debugOut);
 	// testArrayIntTAvg(times, debugOut);
 
-	testArrayNewStruct();
-	// testArrayNew();
+	// testArrayNewStruct();
+	testArrayNew();
 
 	// array_test_1d_int();
 	// array_test_2d_int();
@@ -271,7 +271,7 @@ void testArrayIntTAvg(const uint64_t times, const bool debugOut)
 		for (int j = 0; j < 100; j++)
 		{
 			const int n = (j + 1) * 2;
-			arrayPush(array, n);
+			arrayPushBack(array, n);
 		}
 
 		if (debugOut)
@@ -316,7 +316,7 @@ void testArrayNewStruct()
 			(i + 1) * 2,
 			(float) i / (float) n
 		};
-		arrayPush(array, s);
+		arrayPushBack(array, s);
 	}
 
 	for (i = 0; i < arrayGetLength(array); i++)
@@ -335,9 +335,11 @@ void testArrayNew()
 	for (i = 0; i < 10; i++)
 	{
 		const int n = (i + 1) * 2;
-		// arrayPush(array, n);
-		arrayPushFront(array, n);
+		arrayPushBack(array, n);
+		// arrayPushFront(array, n);
+
 		// array = _arrayPushAt(array, arrayGetLength(array), &n);
+		// arrayPushAt(array, arrayGetLength(array), n);
 	}
 
 	for (i = 0; i < arrayGetLength(array); i++)
@@ -345,10 +347,10 @@ void testArrayNew()
 	printf("\n");
 
 	int front;
-	arrayPopAt(array, 1, &front);
-	// arrayPop(array, &front);
+	arrayPopAt(array, 1, front);
+	// arrayPopBack(array, front);
 	printf("Pop index 1: %d\n", front);
-	// arrayPopFront(array, NULL);
+	_arrayPopAt(array, 0, NULL);
 	printf("Pop front NULL dest\n");
 
 	for (i = 0; i < arrayGetLength(array); i++)

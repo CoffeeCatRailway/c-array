@@ -3,6 +3,13 @@
  *
  * MIT License (MIT), http://opensource.org/licenses/MIT
  * Full license can be found in the LICENSE file
+ *
+ * Changelog 1.0:
+ *	- Initial code
+ *
+ * 17/11/2025
+ * Changelog 1.1:
+ *	- Added arrayPushBack & arrayPopBack for clarity
  */
 
 #ifndef ARRAY_NEW_H
@@ -42,7 +49,7 @@ void* _arrayPushAt(void* array, size_t index, const void* element);
 
 // void arrayPop(void* array, void* dest);
 // void arrayPopFront(void* array, void* dest);
-void arrayPopAt(void* array, size_t index, void* dest);
+void _arrayPopAt(void* array, size_t index, void* dest);
 
 #define arrayCreate(type) _arrayCreate(2, 2, sizeof(type))
 #define arrayCreatePrealloc(type, capacity, increment) _arrayCreate(capacity, increment, sizeof(type))
@@ -52,7 +59,7 @@ void arrayPopAt(void* array, size_t index, void* dest);
 #define arrayGetIncrement(array) _arrayFieldGet(array, INCREMENT)
 #define arrayGetStride(array) _arrayFieldGet(array, STRIDE)
 
-#define arrayCapacityIncrement(array) array = _arrayResize(array, _arrayFieldGet(array, CAPACITY) + _arrayFieldGet(array, INCREMENT))
+#define arrayCapacityIncrement(array) (array = _arrayResize(array, _arrayFieldGet(array, CAPACITY) + _arrayFieldGet(array, INCREMENT)))
 #define arrayCapacityDeflate(array) \
 	do \
 	{ \
@@ -62,11 +69,14 @@ void arrayPopAt(void* array, size_t index, void* dest);
 		array = _arrayResize(array, capacityAdjusted); \
 	} while(0)
 
-#define arrayPush(array, element) array = _arrayPushAt(array, _arrayFieldGet(array, LENGTH), &element)
-#define arrayPushFront(array, element) array = _arrayPushAt(array, 0, &element)
-#define arrayPushAt(array, index, element) array = _arrayPushAt(array, index, &element)
+#define arrayPushBack(array, element) (array = _arrayPushAt(array, _arrayFieldGet(array, LENGTH), &element))
+#define arrayPush(array, element) arrayPushBack(array, element)
+#define arrayPushFront(array, element) (array = _arrayPushAt(array, 0, &element))
+#define arrayPushAt(array, index, element) (array = _arrayPushAt(array, index, &element))
 
-#define arrayPop(array, dest) arrayPopAt(array, _arrayFieldGet(array, LENGTH) - 1, dest)
-#define arrayPopFront(array, dest) arrayPopAt(array, 0, dest)
+#define arrayPopBack(array, dest) _arrayPopAt(array, _arrayFieldGet(array, LENGTH) - 1, &dest)
+#define arrayPop(array, dest) arrayPopBack(array, dest)
+#define arrayPopFront(array, dest) _arrayPopAt(array, 0, &dest)
+#define arrayPopAt(array, index, element) _arrayPopAt(array, index, &element)
 
 #endif //ARRAY_NEW_H
