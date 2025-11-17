@@ -38,8 +38,8 @@ int main()
 	// testArrayNewAvg(times, debugOut);
 	// testArrayIntTAvg(times, debugOut);
 
-	// testArrayNewStruct();
-	testArrayNew();
+	testArrayNewStruct();
+	// testArrayNew();
 
 	// array_test_1d_int();
 	// array_test_2d_int();
@@ -308,6 +308,8 @@ void testArrayNewStruct()
 	struct somestruct* array = arrayCreate(struct somestruct);
 	printArrayNewDetails(array);
 
+	// printf("%llu %llu\n", sizeof(int), sizeof(float));
+
 	int i;
 	for (i = 0; i < n; i++)
 	{
@@ -321,8 +323,25 @@ void testArrayNewStruct()
 
 	for (i = 0; i < arrayGetLength(array); i++)
 		printf("(%d, %d, %f)\n", array[i].a, array[i].b, array[i].c);
+	printf("\n");
+
+	struct somestruct front;
+	arrayPopAt(array, 1, front);
+	// arrayPopBack(array, front);
+	printf("Pop index 1: (%d, %d, %f)\n", front.a, front.b, front.c);
+	_arrayPopAt(array, 0, NULL);
+	printf("Pop front NULL dest\n");
+
+	for (i = 0; i < arrayGetLength(array); i++)
+		printf("(%d, %d, %f)\n", array[i].a, array[i].b, array[i].c);
+	printf("\n");
 
 	printArrayNewDetails(array);
+
+	arrayCapacityDeflate(array);
+	printf("Deflate array\n");
+	printArrayNewDetails(array);
+	
 	arrayDestroy(array);
 }
 
